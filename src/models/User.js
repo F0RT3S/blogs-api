@@ -22,5 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+  // No arquivo 1 uso hasMany
+
   return User;
 };
