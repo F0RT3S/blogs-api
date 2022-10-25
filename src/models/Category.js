@@ -12,21 +12,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'categories',
   });
 
-  // Category.associate = (models) => {
-  //  models.blogPost.belongsToMany(models.Category, {
-  //   through: nomeDoBancoIntermediário,
-  //   as: 'categories',
-  //   foreignKey: 'post_id',
-  //   otherKey: 'category_id',
-  //  });
-
-  //  models.Category.belongsToMany(models.blogPost, {
-  //   through: nomeDoBancoIntermediário,
-  //   as: 'blog_posts',
-  //   foreignKey: 'post_id',
-  //   otherKey: 'category_id',
-  //  });
-  // };
-
   return Category;
 };
