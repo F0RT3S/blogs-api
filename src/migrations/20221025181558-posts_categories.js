@@ -6,7 +6,7 @@ module.exports = {
       post_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'blogcle_posts',
+          model: 'blog_posts',
           key: 'id',
         },
         primaryKey: true,
