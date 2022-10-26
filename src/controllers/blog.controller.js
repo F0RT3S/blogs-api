@@ -1,16 +1,15 @@
 const blogService = require('../services/blog.service');
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  const infoLogin = await blogService.login({ email, password });
+  try {
+    const token = await blogService.login(req.body);
 
-  if (email === '' || password === '') {
-    return res.status(400).json({ 
-      message: 'Some required fields are missing',
-    }); 
+    return res.status(200).json({ token });
+  } catch (error) {
+    if (error.message === 'Invalid fields') {
+      return res.status(400).json({ message: 'Invalid fields' });
+    }
   }
-  
-  if (!infoLogin) return res.status(400).json({ message: 'Apenas teste' });
 };
 
 module.exports = {
