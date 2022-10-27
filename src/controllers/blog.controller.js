@@ -35,11 +35,22 @@ const user = async (req, res) => {
 
 const getUser = async (_req, res) => {
   const findUser = await blogService.getUser();
-  res.status(200).json(findUser);
+  return res.status(200).json(findUser);
+};
+
+const getUserById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const userById = await blogService.getUserById(id);
+    return res.status(200).json(userById);
+  } catch (error) {
+    return res.status(404).json({ message: 'User does not exist' });
+  }
 };
 
 module.exports = {
   login,
   user,
   getUser,
+  getUserById,
 };
