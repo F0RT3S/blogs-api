@@ -23,11 +23,28 @@ const getPost = async () => {
   });
   
   const find = findPost.map((post) => post.dataValues);
-  console.log(find);
   return find;
+};
+
+const getPostId = async (id) => {
+  const postId = await BlogPost.findByPk(id, {
+    attributes: { exclude: ['user_id'] },
+    include: [
+      { model: User, as: 'user', attributes: ['id', 'displayName', 'email', 'image'] },
+      { model: Category,
+        as: 'categories', 
+        attributes: ['id', 'name'],
+        through: { attributes: [] } },
+    ],
+  });
+
+  if (!postId) throw new Error();
+  
+  return postId.dataValues;
 };
 
 module.exports = {
   createPost,
   getPost,
+  getPostId,
 };
